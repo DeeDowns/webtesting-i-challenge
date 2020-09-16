@@ -6,6 +6,16 @@ module.exports = {
 };
 
 function success(item) {
+  // if(item.enhancement < 0) {
+  //   return item.enhancement = 0
+  // } else if (item.enhancement > 20) {
+  //   return item.enhancement = 20
+  // } else {
+  //   item.enhancement++
+  // }
+ 
+  item.enhancement === 20 ? item.enhancement = 20 : item.enhancement++
+  
   return { ...item };
 }
 
@@ -14,7 +24,11 @@ function fail(item) {
 }
 
 function repair(item) {
-  return { ...item };
+  // const newItem = {...item}
+  return { 
+    ...item,
+    durability: 100 
+  };
 }
 
 function get(item) {
