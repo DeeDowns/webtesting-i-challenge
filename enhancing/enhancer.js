@@ -17,20 +17,13 @@ function fail(item) {
 
   if(newItem.enhancement > 16){
     newItem.enhancement--
-  } else {
-     if(newItem.enhancement < 15) {
+  } else if(newItem.enhancement < 15) {
         newItem.durability -= 5
-    } else if (newItem.enhancement >= 15) {
+  } else if (newItem.enhancement >= 15) {
       newItem.durability -=10
-    }
-  }
+  } 
 
   return newItem
-
-  // return { ...(item,
-  //   item.enhancement > 15 ? item.durability - 5 : item.durability
-  // )}
-  
 }
 
 function repair(item) {
@@ -41,5 +34,13 @@ function repair(item) {
 }
 
 function get(item) {
-  return { ...item };
+  let newItem = { ...item }
+
+  if(newItem.enhancement === 0) {
+    newItem.name
+  } else if (newItem.enhancement > 0) {
+    newItem.name = `[+${newItem.enhancement}] ${newItem.name}`
+  } 
+
+  return newItem
 }

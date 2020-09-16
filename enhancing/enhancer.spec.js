@@ -82,12 +82,41 @@ describe('enhancer.js', () => {
             const item = {
                 name: 'hammer',
                 durability: 10,
-                enhancement: 17
+                enhancement: 18
             } 
 
             const result = enhancer.fail(item)
 
-            expect(result.enhancement).toBe(16)
+            expect(result.enhancement).toBe(17)
         })
     })
+
+    describe('get()', () => {
+        it('should not modify item name if enhancement level is 0', () => {
+            const item = {
+                name: 'hammer',
+                durability: 10,
+                enhancement: 0
+            } 
+
+            const result = enhancer.get(item)
+
+            expect(result.name).toBe('hammer')
+            
+        })
+
+        it('should change item name to include the enhancement level, preceded by a plus sign ( + ), between square brackets before the item name, if enhancement level is greater than 0', () => {
+            const item = {
+                name: 'hammer',
+                durability: 10,
+                enhancement: 10
+            } 
+
+            const result = enhancer.get(item)
+
+            expect(result.name).toBe('[+10] hammer')
+            
+        })
+    })
+    
 })
