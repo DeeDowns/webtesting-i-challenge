@@ -6,25 +6,34 @@ module.exports = {
 };
 
 function success(item) {
-  // if(item.enhancement < 0) {
-  //   return item.enhancement = 0
-  // } else if (item.enhancement > 20) {
-  //   return item.enhancement = 20
-  // } else {
-  //   item.enhancement++
-  // }
- 
-  item.enhancement === 20 ? item.enhancement = 20 : item.enhancement++
+  let newItem = { ...item } 
+  newItem.enhancement === 20 ? newItem.enhancement = 20 : newItem.enhancement++
   
-  return { ...item };
+  return newItem;
 }
 
 function fail(item) {
-  return { ...item };
+  let newItem = { ...item } 
+
+  if(newItem.enhancement > 16){
+    newItem.enhancement--
+  } else {
+     if(newItem.enhancement < 15) {
+        newItem.durability -= 5
+    } else if (newItem.enhancement >= 15) {
+      newItem.durability -=10
+    }
+  }
+
+  return newItem
+
+  // return { ...(item,
+  //   item.enhancement > 15 ? item.durability - 5 : item.durability
+  // )}
+  
 }
 
 function repair(item) {
-  // const newItem = {...item}
   return { 
     ...item,
     durability: 100 
